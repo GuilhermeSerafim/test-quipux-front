@@ -42,7 +42,7 @@ const PlaylistManager = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                minHeight: '80vh',
+                minHeight: '60vh',
                 bgcolor: 'background.default',
             }}
         >
@@ -56,8 +56,8 @@ const PlaylistManager = () => {
                 />
                 <CardContent>
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                        Get fresh web design resources delivered straight to your inbox
-                        every week.
+                    Adicione, edite e organize suas playlists favoritas em um só lugar. 
+                    Personalize sua experiência.
                     </Typography>
                     <Box
                         component="form"
@@ -69,7 +69,13 @@ const PlaylistManager = () => {
                         }}
                     >
                         <TextField
-                            label="Your Email"
+                            label="Nome da Playlist"
+                            variant="outlined"
+                            size="small"
+                            fullWidth
+                        />
+                        <TextField
+                            label="Música para adicionar"
                             variant="outlined"
                             size="small"
                             fullWidth
@@ -79,7 +85,7 @@ const PlaylistManager = () => {
                             color="primary"
                             sx={{ textTransform: 'none', fontWeight: 'bold' }}
                         >
-                            Sign up
+                            Enviar
                         </Button>
                     </Box>
                     <div style={{ marginLeft: 80 }}>
