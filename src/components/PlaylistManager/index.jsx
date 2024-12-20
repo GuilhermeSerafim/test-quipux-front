@@ -42,13 +42,13 @@ const PlaylistManager = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                minHeight: '60vh',
+                minHeight: '50vh',
                 bgcolor: 'background.default',
             }}
         >
             <CustomCard>
                 <CardHeader
-                    title="Subscribe"
+                    title="Adicionar música"
                     titleTypographyProps={{
                         variant: 'h5',
                         fontWeight: 'bold',
@@ -88,9 +88,6 @@ const PlaylistManager = () => {
                             Enviar
                         </Button>
                     </Box>
-                    <div style={{ marginLeft: 80 }}>
-                        <OndasDeSom />
-                    </div>
                 </CardContent>
             </CustomCard>
         </Box>

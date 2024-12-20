@@ -1,14 +1,16 @@
 import { Box, Button, styled, Typography } from "@mui/material";
 import laptopImg from "./laptop.jpg";
+import Ondas from "../WaveMenu";
+import { Search } from "@mui/icons-material";
 
 export default function Header() {
     // Estilos personalizados
     const StyledHeader = styled(Box)(({ theme }) => ({
         position: "relative",
         width: "100%",
-        height: "100px",
+        height: "200px",
         backgroundImage: `url(${laptopImg})`,
-        backgroundSize: "cover",
+        backgroundSize: "",
         backgroundPosition: "center",
         display: "flex",
         alignItems: "center", 
@@ -38,8 +40,8 @@ export default function Header() {
 
     return (
         <StyledHeader>
-            <ExploreButton sx={{fontWeight: 500}} variant="contained" href="#explore-playlist">
-                Procurar Playlist
+            <ExploreButton title="Procurar playlist" sx={{fontWeight: 500}} variant="contained" href="#explore-playlist">
+                <Search/>
             </ExploreButton>
             <HeaderContent>
                 <Typography
@@ -53,6 +55,7 @@ export default function Header() {
                 >
                     Monte sua Playlist
                 </Typography>
+                <Ondas/>
             </HeaderContent>
         </StyledHeader>
     );
