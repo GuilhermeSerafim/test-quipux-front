@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid2 from '@mui/material/Grid2';
 import Box from '@mui/material/Box';
-import backgroundImage from './iaColorMusic.avif'; // Substitua pelo caminho correto da imagem
+import backgroundImage from './iaColorMusic.avif';
 import { MusicOff } from '@mui/icons-material';
 
 export default function Playlists() {
@@ -48,6 +48,27 @@ export default function Playlists() {
   if (error) {
     return <Typography variant="h6" color="error" sx={{ textAlign: 'center' }}>{error}</Typography>;
   }
+
+  const handleDeletePlaylist = async (listName) => {
+    try {
+      const response = await fetch(`http://localhost:8080/lists/${listName}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: 'Basic ' + btoa('user:27445dd9-616f-457e-8a0c-05725d8ae4f8'),
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Erro ao deletar a lista de reprodução.');
+      }
+
+      // Atualizar o estado após a exclusão
+      setItems((prevItems) => prevItems.filter((playlist) => playlist.nome !== listName));
+    } catch (error) {
+      console.error('Erro ao deletar lista:', error);
+      setError('Erro ao deletar a lista.');
+    }
+  };
 
   return (
     <Box
@@ -103,7 +124,7 @@ export default function Playlists() {
                 ))}
               </CardContent>
               <CardActions>
-                <Button color='error' size="large" onClick={() => console.log("Teste")}><MusicOff /></Button>
+                <Button color='error' size="large" onClick={() => handleDeletePlaylist(playlist.nome)}><MusicOff /></Button>
               </CardActions>
             </Card>
           </Grid2>
