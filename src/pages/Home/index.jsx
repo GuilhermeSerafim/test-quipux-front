@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, Card, CardContent, CardHeader, FormControl, styled, TextField, Typography } from "@mui/material";
+import {  Button, Card, CardContent, CardHeader, FormControl, TextField, Typography } from "@mui/material";
 
 export default function Home() {
     const [playlistName, setPlaylistName] = useState("");
@@ -80,16 +80,6 @@ export default function Home() {
             setMessage("Erro ao adicionar playlist. Tente novamente.");
         }
     };
-
-    const CustomCard = styled(Card)(({ theme }) => ({
-        maxWidth: 400,
-        margin: "auto",
-        textAlign: "center",
-        padding: theme.spacing(3),
-        borderRadius: theme.shape.borderRadius,
-        boxShadow: theme.shadows[4],
-        backgroundColor: theme.palette.background.paper,
-    }));
 
     return (
         <Card

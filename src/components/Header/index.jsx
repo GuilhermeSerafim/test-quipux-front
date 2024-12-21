@@ -1,7 +1,7 @@
 import { Box, Button, styled, Typography } from "@mui/material";
 import laptopImg from "./laptop.jpg";
 import Ondas from "../WaveMenu";
-import { LibraryMusic, Search } from "@mui/icons-material";
+import { LibraryMusic } from "@mui/icons-material";
 import { useNavigate } from "react-router";
 
 export default function Header() {
