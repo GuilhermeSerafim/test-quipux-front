@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# Test Quipux - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este é o repositório do frontend para o projeto **Test Quipux**, desenvolvido utilizando **React**.
 
-## Available Scripts
+## Tecnologias Utilizadas
 
-In the project directory, you can run:
+- **React**: Framework principal para o desenvolvimento.
+- **Material UI (MUI)**: Biblioteca de componentes para estilização.
+- **React Router**: Gerenciamento de rotas na aplicação.
+## Como Executar
 
-### `npm start`
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/GuilhermeSerafim/test-quipux-front.git
+   ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. Navegue até o diretório do projeto:
+   ```bash
+   cd test-quipux-front
+   ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-### `npm test`
+4. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm start
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+5. A aplicação estará disponível em:
+   ```
+   http://localhost:3000
+   ```
 
-### `npm run build`
+## Funcionalidades
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Adicionar Playlist**: Crie playlists com nome, descrição e músicas.
+- **Pesquisar Playlists**: Use a barra de busca para filtrar playlists pelo nome.
+- **Remover Playlists**: Exclua playlists existentes diretamente na interface.
+- - **Listar Playlists**: Exibe todas as playlists disponíveis, apresentando informações como nome, descrição e músicas associadas.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Integração com o Backend
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Certifique-se de que o backend está em execução para que o frontend possa consumir os dados corretamente.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## [Deploy](https://test-quipux-front-1nz81exu6-guilhermeserafims-projects.vercel.app)
+O deploy foi realizado para fins de visualização do design. Para o funcionamento completo da aplicação, é necessário ativar o backend e configurar a chave de autenticação para todas as requisições. Alternativamente, você pode desabilitar temporariamente a autenticação no backend ajustando a configuração de segurança no arquivo [SecurityConfig](https://github.com/GuilhermeSerafim/test-quipux-back/blob/main/src/main/java/com/example/demo/infrastructure/config/SecurityConfig.java).
