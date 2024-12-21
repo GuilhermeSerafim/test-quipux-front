@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import Grid2 from '@mui/material/Grid2';
 import Box from '@mui/material/Box';
 import backgroundImage from './iaColorMusic.avif'; // Substitua pelo caminho correto da imagem
+import { MusicOff } from '@mui/icons-material';
 
 export default function Playlists() {
   const [items, setItems] = useState([]);
@@ -59,33 +60,50 @@ export default function Playlists() {
       <Typography variant="h4" sx={{ textAlign: 'center', color: 'white', mb: 4 }}>
         Minhas Playlists
       </Typography>
-      <Grid2 container sx={{display: "flex", justifyContent:"center"}} spacing={2}>
+      <Grid2 container sx={{ display: "flex", justifyContent: "center" }} spacing={8}>
         {items.map((playlist) => (
           <Grid2 item xs={12} sm={6} md={4} key={playlist.id} >
             <Card sx={{ maxWidth: 345 }}>
               <CardMedia
-                sx={{ height: 140, width: 300 }}
+                sx={{ height: 140, width: 345 }}
                 image={backgroundImage} // Coloque uma imagem padrão ou específica
                 title={playlist.nome}
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h5" component="div" sx={{
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}>
                   {playlist.nome}
                 </Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                <Typography variant="body2" sx={{
+                  color: 'text.secondary', whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}>
                   {playlist.descricao}
                 </Typography>
-                <Typography variant="subtitle1" sx={{ mt: 2 }}>
+                <Typography variant="subtitle1" sx={{
+                  mt: 2, whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }} >
                   Músicas:
                 </Typography>
                 {playlist.musicas.map((musica) => (
-                  <Typography variant="body2" key={musica.id}>
+                  <Typography variant="body2" key={musica.id}
+                    sx={{
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}>
                     {musica.titulo} - {musica.artista}
                   </Typography>
                 ))}
               </CardContent>
               <CardActions>
-                <Button sx={(theme)=> ({width: "100%"})} color='error' size="large" onClick={()=> console.log("Teste")}>Excluir</Button>
+                <Button color='error' size="large" onClick={() => console.log("Teste")}><MusicOff /></Button>
               </CardActions>
             </Card>
           </Grid2>

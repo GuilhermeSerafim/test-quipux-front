@@ -1,9 +1,11 @@
 import { Box, Button, styled, Typography } from "@mui/material";
 import laptopImg from "./laptop.jpg";
 import Ondas from "../WaveMenu";
-import { Search } from "@mui/icons-material";
+import { LibraryMusic, Search } from "@mui/icons-material";
+import { useNavigate } from "react-router";
 
 export default function Header() {
+    const navigate = useNavigate();
     // Estilos personalizados
     const StyledHeader = styled(Box)(({ theme }) => ({
         position: "relative",
@@ -32,16 +34,16 @@ export default function Header() {
         top: theme.spacing(2),
         right: theme.spacing(15),
         color: theme.palette.primary.contrastText,
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: "#545FE5",
         "&:hover": {
-            backgroundColor: theme.palette.primary.dark,
+            backgroundColor: '#3f46b5',
         },
     }));
 
     return (
         <StyledHeader>
-            <ExploreButton title="Procurar playlist" sx={{fontWeight: 500}} variant="contained" href="#explore-playlist">
-                <Search/>
+            <ExploreButton title="Procurar playlist" sx={{fontWeight: 500}} variant="contained" onClick={() => navigate("/playlists")}>
+                <LibraryMusic/>
             </ExploreButton>
             <HeaderContent>
                 <Typography

@@ -1,5 +1,4 @@
 import React from 'react';
-import PlaylistManager from './components/PlaylistManager';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
