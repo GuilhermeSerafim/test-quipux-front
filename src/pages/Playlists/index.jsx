@@ -91,7 +91,7 @@ export default function Playlists() {
 
   if (error) {
     return (
-      <Typography variant="h6" color="error" sx={{ textAlign: "center" }}>
+      <Typography variant="h6" color="error" sx={{ textAlign: "center", mt: 4 }}>
         {error}
       </Typography>
     );
