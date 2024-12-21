@@ -83,7 +83,7 @@ export default function Playlists() {
 
   if (loading) {
     return (
-      <Typography variant="h6" sx={{ textAlign: "center" }}>
+      <Typography variant="h6" sx={{ textAlign: "center", mt: 4 }}>
         Carregando playlists...
       </Typography>
     );
