@@ -1,7 +1,16 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useSession } from "../../auth/SessionProvider";
 import {  Button, Card, CardContent, CardHeader, FormControl, TextField, Typography } from "@mui/material";
 
 export default function Home() {
+    const { request, isCurrent: sessionIsCurrent } = useSession();
+    const generation = useRef(0);
+    const controllerRef = useRef(null);
+    const [submitting, setSubmitting] = useState(false);
+    useEffect(() => () => {
+        generation.current += 1;
+        controllerRef.current?.abort();
+    }, []);
     const [playlistName, setPlaylistName] = useState("");
     const [description, setDescription] = useState("");
     const [musicTitle, setMusicTitle] = useState("");
@@ -55,29 +64,33 @@ export default function Home() {
             musicas: songs,
         };
 
+        const operation = ++generation.current;
+        controllerRef.current?.abort();
+        const controller = new AbortController();
+        controllerRef.current = controller;
+        const isCurrent = () => operation === generation.current && sessionIsCurrent();
+        setSubmitting(true);
         try {
-            const response = await fetch(`http://localhost:8080/lists`, {
+            const response = await request("/lists", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: "Basic " + btoa("user:27445dd9-616f-457e-8a0c-05725d8ae4f8"),
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),
+                signal: controller.signal,
             });
-
-            if (response.ok) {
-                setMessage("Playlist adicionada com sucesso!");
-                // Resetar campos
-                setPlaylistName("");
-                setDescription("");
-                setSongs([]);
-            } else {
-                const errorData = await response.json();
-                setMessage(`Erro: ${errorData.message || "Não foi possível adicionar a playlist."}`);
-            }
+            if (!isCurrent()) return;
+            if (!response.ok) throw new Error(response.status === 403
+                ? "Sem permissão para adicionar playlists."
+                : "Não foi possível adicionar a playlist. Tente novamente.");
+            setMessage("Playlist adicionada com sucesso!");
+            setPlaylistName("");
+            setDescription("");
+            setSongs([]);
         } catch (error) {
-            console.error("Erro ao enviar dados:", error);
-            setMessage("Erro ao adicionar playlist. Tente novamente.");
+            if (isCurrent()) setError(error.name === "TypeError"
+                ? "Não foi possível acessar a API. Tente novamente."
+                : error.message);
+        } finally {
+            if (isCurrent()) setSubmitting(false);
         }
     };
 
@@ -194,7 +207,7 @@ export default function Home() {
                     >
                         Adicionar Música
                     </Button>
-                    {songs > 0 ?
+                    {songs.length > 0 ?
                         <Typography variant="subtitle1" sx={{ mt: 2 }}>
                             Músicas adicionadas:
                         </Typography> : ""
@@ -206,6 +219,7 @@ export default function Home() {
                     ))}
                     <Button
                         type="submit"
+                        disabled={submitting}
                         variant="contained"
                         color="primary"
                         sx={{
@@ -217,11 +231,12 @@ export default function Home() {
                             },
                         }}
                     >
-                        Enviar Playlist
+                        {submitting ? "Enviando..." : "Enviar Playlist"}
                     </Button>
                 </FormControl>
+                {error && <Typography role="alert" color="error">{error}</Typography>}
                 {message && (
-                    <Typography variant="body2" color={message.includes("sucesso") ? "success.main" : "error"} sx={{ mt: 2 }}>
+                    <Typography role="status" variant="body2" color={message.includes("sucesso") ? "success.main" : "error"} sx={{ mt: 2 }}>
                         {message}
                     </Typography>
                 )}
